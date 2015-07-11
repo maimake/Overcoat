@@ -81,6 +81,13 @@
         return nil;
     }
     
+    if ([JSONObject isKindOfClass:[NSDictionary class]]) {
+        if([(NSDictionary*)JSONObject allKeys].count == 0)
+        {
+            return nil;
+        }
+    }
+    
     NSHTTPURLResponse *HTTPResponse = (NSHTTPURLResponse *)response;
     Class resultClass = Nil;
     Class responseClass = Nil;
