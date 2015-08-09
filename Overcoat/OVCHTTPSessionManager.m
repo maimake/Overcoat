@@ -237,6 +237,9 @@
     self.backgroundContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     [self.backgroundContext setPersistentStoreCoordinator:self.managedObjectContext.persistentStoreCoordinator];
     
+    //when managedObjectContext saved some changes, backgroundContext must merge or overwrite
+    self.backgroundContext.mergePolicy = [[NSMergePolicy alloc] initWithMergeType:NSMergeByPropertyObjectTrumpMergePolicyType];;
+    
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     NSManagedObjectContext *context = self.managedObjectContext;
     
